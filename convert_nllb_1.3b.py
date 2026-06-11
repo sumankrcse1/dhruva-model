@@ -195,7 +195,7 @@ def build_embed_and_lm_head(embed_weight_initializer, output_path):
         initializer=[embed_weight_initializer, scale_val]
     )
     
-    model = helper.make_model(graph, producer_name='dhruva-converter', ir_version=10)
+    model = helper.make_model(graph, producer_name='dhruva-converter', ir_version=10, opset_imports=[helper.make_operatorsetid("", 17)])
     onnx.save(model, output_path)
     print(f"Created model: {output_path}")
 
@@ -421,7 +421,7 @@ def build_cache_initializer(safetensors_path, output_path):
         initializer=initializers
     )
     
-    model = helper.make_model(graph, producer_name='dhruva-converter', ir_version=10)
+    model = helper.make_model(graph, producer_name='dhruva-converter', ir_version=10, opset_imports=[helper.make_operatorsetid("", 17)])
     onnx.save(model, output_path)
     print(f"Created cache_initializer model at: {output_path}")
 
